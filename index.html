@@ -49,7 +49,8 @@
 
                 <section>
                     <h1>Or</h1>
-                    <h2>What's Right About GeoJSON and Why?</h2>
+                    <h2>What does GeoJSON get right?</h2>
+                    <h2>Why do People forgive its faults?</h2>
                     <h2>And How Can We Do More Of This?</h2>
 
                     <aside class="notes">
@@ -139,14 +140,13 @@
                 </section>
 
                 <section>
-                    <h2>This is what it sounds like</h2>
-                    <h2>when doves cry</h2>
+                    <h2>A Timeline</h2>
                     <ul>
-                        <li class="fragment">1998: XML 1.0
-                        <li class="fragment">2002: D. Crockford launches json.org</li>
-                        <li class="fragment">2005: AJAX</li>
-                        <li class="fragment">2006: RFC 4627, "The application/json Media Type for JavaScript Object Notation (JSON)"</li>
-                        <li class="fragment">2009: The Web stops calling XML back</li>
+                        <li>1998: XML 1.0
+                        <li>2002: D. Crockford launches json.org</li>
+                        <li>2005: AJAX</li>
+                        <li>2006: RFC 4627, "The application/json Media Type for JavaScript Object Notation (JSON)"</li>
+                        <li>2009: The Web stops calling XML back</li>
                     </ul>
 
                     <aside class="notes">
@@ -162,13 +162,102 @@
                 </section>
 
                 <section>
-                    <h2>Design of JSON</h2>
+                    <h2>JSON's Design Goals</h2>
                     <ul>
-                        <li>Based on a programming language model</li>
-                        <li>Flexibility, not extensibility</li>
-                        <li>
+                        <li>to be minimal</li>
+                        <li>portable</li>
+                        <li>textual</li>
+                        <li>a subset of JavaScript</li>
+                        <li class="fragment">(and other languages with Map literals)</li>
                     </ul>
+                
+                    <aside class="notes">
+                        Text trades performance for transparency and
+                        hackability.
+                        
+                        While Crockford was targeting Javascript, other
+                        languages with Map literals are interchangeable with
+                        Javascript where JSON is concerned. Python's syntax is
+                        practically identical.
+                        
+                        JSON handles 
+                        Replacing XML globally is not one of JSON's design
+                        goals.
+                    
+                    </aside>
 
+                </section>
+
+                <section>
+                    <h2>JSON is self-describing</h2>
+                    <pre style="font-size:larger;text-align:center"><code data-trim>{"foo": 5, "bar": "5"}</code></pre>
+                    <div class="fragment">
+                        <p>vs.</p>
+                        <pre style="font-size:larger;text-align:center"><code data-trim><foo>5</foo><bar>5</bar></code></pre>
+                    </div>
+
+                    <aside class="notes">
+                        The format is self-describing in a way that XML is not.
+                        Foo is a number.  Bar is a string.  No schema is needed
+                        to explain that.
+                    
+                    </aside>
+
+                </section>
+
+                <section>
+                    <h2>JSON affords us</h2>
+                    <h3>Simple and evolvable distributed computing</h3>
+                    <p class="fragment">(Alert: IANACS...)</p>
+
+                </section>
+
+                <section>
+                    <h2>Not Distributed</h2>
+                    <p>(Python Example)</p>
+                    <pre><code data-trim>
+from module1 import func1 # Returns a mapping
+from module2 import func2 # Takes a mapping
+
+data = dict(func1())
+func2(**data)
+                    </code></pre>
+
+                </section>
+
+                <section>
+                    <h2>Simply Distributed</h2>
+                    <p>(Python Example)</p>
+                    <pre><code data-trim>
+# Network Node 1
+
+from module1 import func1 # Returns a mapping
+
+data = dict(func1())
+
+# send data...
+                    </code></pre>
+
+                    <pre><code data-trim>
+# Network Node 2
+
+from module2 import func2 # Takes a mapping
+
+# receive data...
+
+func2(**data)
+                    </code></pre>
+
+                    <p>Node 1 &#10230; {data} &#10230; Node 2</p>
+
+                </section>
+
+                <section>
+                    <h2>Gall's Law</h2>
+                    <blockquote>
+                        A complex system that works is invariably found to have
+                        evolved from a simple system that worked.
+                    </blockquote>
                 </section>
 
                 <section>
@@ -214,7 +303,7 @@
                     </aside>
 
                 </section>
-
+                
                 <section>
                     <h2>Credits</h2>
                     <ul>
@@ -254,7 +343,7 @@
                 center: true,
 
                 theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+                transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
 
                 // Optional libraries used to extend on reveal.js
                 dependencies: [
