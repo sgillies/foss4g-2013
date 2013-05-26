@@ -48,16 +48,41 @@
                 </section>
 
                 <section>
-                    <h1>Or</h1>
-                    <h2>What does GeoJSON get right?</h2>
-                    <h2>Why do People forgive its faults?</h2>
-                    <h2>And How Can We Do More Of This?</h2>
+                    <a href="http://www.flickr.com/photos/twiklind/4842356721/"><img title="Lift-off by Tommy's Flickr site, on Flickr" src="images/4842356721_da1e2def7b_o.jpg"></a>
+                
+                    <aside class="notes">
+                        Is this a picture of success or failure? Good practice
+                        or bad practice? Safe or unsafe?
+
+                        Am I using this as a metaphor for GeoJSON? Yes. Is it
+                        a good one? We'll see.
+
+                        Before I wrote this talk I knew of "Lawnchair" Larry
+                        Walters and his 1982 flight, but I didn't know that
+                        cluster ballooning had practitioners today. It's
+                        a little more seat-of-the-pants than serious
+                        ballooning. A little less formal. Enormous fun by all
+                        reports.
+
+                    </aside>
+
+                </section>
+
+                <section>
+                    <h2>The Little Format that Could</h2>
+                    <ul>
+                        <li>GeoJSON gets many things right</li>
+                        <li>It gets some things wrong</li>
+                        <li>Requirements, opinions, and tastes differ</li>
+                        <li>GeoJSON is flexible and evolvable</li>
+                        <li>It's been a valuable experiment in standards making</li>
+                    </ul>
 
                     <aside class="notes">
-                        Generally, this is what this talk will cover. I'm going
-                        to explain what's right about GeoJSON, why it's right
-                        and why it matters, and suggest how we can reform
-                        standardization and agree on more humanely-sized specs.
+                        In 5 bullets, this is what this talk will cover.
+
+                        I'm fond of calling GeoJSON the little format that
+                        could.
                     
                     </aside>
 
@@ -162,13 +187,13 @@
                 </section>
 
                 <section>
-                    <h2>JSON's Design Goals</h2>
+                    <h2>The Web loves JSON because it is</h2>
                     <ul>
-                        <li>to be minimal</li>
-                        <li>portable</li>
-                        <li>textual</li>
+                        <li>minimal, portable, textual</li>
+                        <li>self-describing</li>
                         <li>a subset of JavaScript</li>
                         <li class="fragment">(and other languages with Map literals)</li>
+                        <li class="fragment">Makes simple network computing easy</li>
                     </ul>
                 
                     <aside class="notes">
@@ -180,7 +205,6 @@
                         Javascript where JSON is concerned. Python's syntax is
                         practically identical.
                         
-                        JSON handles 
                         Replacing XML globally is not one of JSON's design
                         goals.
                     
@@ -206,34 +230,34 @@
                 </section>
 
                 <section>
-                    <h2>JSON affords us</h2>
-                    <h3>Simple and evolvable distributed computing</h3>
-                    <p class="fragment">(Alert: IANACS...)</p>
-
+                    <h2>Network computing made easy</h2>
+                    <ul>
+                      <li>"Impedance match" between wire format and programs</li>
+                      <li>Ordinary code can be split between network nodes</li>
+                    </ul>
+                    
                 </section>
 
                 <section>
-                    <h2>Not Distributed</h2>
-                    <p>(Python Example)</p>
+                    <h2>A Simple Application</h2>
                     <pre><code data-trim>
 from module1 import func1 # Returns a mapping
 from module2 import func2 # Takes a mapping
 
-data = dict(func1())
+data = func1()
 func2(**data)
                     </code></pre>
 
                 </section>
 
                 <section>
-                    <h2>Simply Distributed</h2>
-                    <p>(Python Example)</p>
+                    <h2>A Simple Network Application</h2>
                     <pre><code data-trim>
 # Network Node 1
 
 from module1 import func1 # Returns a mapping
 
-data = dict(func1())
+data = func1()
 
 # send data...
                     </code></pre>
@@ -250,17 +274,70 @@ func2(**data)
 
                     <p>Node 1 &#10230; {data} &#10230; Node 2</p>
 
+                    <aside class="notes">
+                        That's what JSON is about. No more and no less. It's
+                        not about globally replacing XML. It's about letting
+                        developers use their everyday languages and everyday
+                        code in network applications. It's about making simple
+                        network applications easy.
+                        
+                        The Web loves this.
+
+                    </aside>
                 </section>
 
                 <section>
-                    <h2>Gall's Law</h2>
-                    <blockquote>
-                        A complex system that works is invariably found to have
-                        evolved from a simple system that worked.
-                    </blockquote>
+                    <h2>GeoJSON is a profile of JSON</h2>
+                    <p>Written in 2008 by</p>
+                    <ul>
+                        <li>Howard Butler</li>
+                        <li>Martin Daly</li>
+                        <li>Allan Doyle</li>
+                        <li>Sean Gillies</li>
+                        <li>Tim Schaub</li>
+                        <li>Christopher Schmidt</li>
+                    </ul>
+
+                    <aside class="notes">
+                        With the help of many others. Half of the authors are
+                        here at this conference.
+
+                    </aside>
+
                 </section>
 
                 <section>
+                    <h2>Working Group Goals</h2>
+                    <ul>
+                        <li>Reconcile Simple Features and the Web</li>
+                        <li>Keep it accessible and simple</li>
+                        <li>Work in the open</li>
+                    </ul>
+
+                </section>
+
+                <section>
+                    <h2>Success!</h2>
+                    <ul>
+                        <li>FOSS4G Applications (<a href="http://mapfart.com/">mapfart.com</a>)</li>
+                        <li><a href="http://geojsonlint.com">geojsonlint.com</a></li>
+                        <li>MongoDB (10gen)</li>
+                        <li>OData (OASIS)</li>
+                        <li>App Coverage (Apple)</li>
+                        <li>Maps Engine API (Google)</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Failure!</h2>
+                    <blockquote cite="">
+                        While I do not mind folks ignoring ISO 19107 (which is
+                        the official OGC geometry volume) in small things, it
+                        is disconcerting to have the requirement to catalogue
+                        the disconnects to understand what is suppose to be
+                        a simple specification.</blockquote>
+                    <p> —Exasperated Architect (2007)</p>
+
                     <blockquote cite="">GeoJSON is Spectacularly Wrong.</blockquote>
                     <p> —Exasperated Developer (2012)</p>
                     
@@ -285,39 +362,138 @@ func2(**data)
                     
                 </section>
 
+                <section>
+                    <h2>Coordinate Order is a Big Deal</h2>
+                    <img height="500" width="800" src="images/6976450667_393bb7d100_o.png">
+                </section>
+
+                <section>
+                    <h2>GeoJSON is not Lat, Lng</h2>
+                    <ul>
+                        <li>To match OGR</li>
+                        <li>To match KML</li>
+                        <li>It surprises the naive</li>
+                        <li>It annoys the expert</li>
+                        <li>It is what it is</li>
+                    </ul>
+
+                </section>
+
+                <section>
+                    <h2>GeoJSON does not conform with ISO 191**</h2>
+                    <ul>
+                        <li>Because we wanted to ship soon</li>
+                        <li>And get back to work writing programs</li>
+                        <li>It's a blocker for some vendors</li>
+                        <li class="fragment">Good news: GML is just as good as it ever was</li>
+                    </ul>
+
+                </section>
+
+                <section>
+                    <h1>But GeoJSON Does Good, too</h1>
+                </section>
+
+                <section>
+                    <h2>The Spec Doesn't Waste Your Time</h2>
+                    <ul>
+                        <li>8 pages (printed)</li>
+                        <li>HTML</li>
+                        <li>With section targets</li>
+                        <li>No click-through license agreement</li>
+                        <li>Stable. There will be no GeoJSON 2.0</li>
+                    </ul>
+
+                </section>
+
+                <section>
+                    <h2>GeoJSON is good for programmers</h2>
+                    <pre><code data-trim>
+def explode(coords):
+"""Explode a GeoJSON geometry's coordinates object and yield coordinate
+tuples. As long as the input is conforming, the type of the geometry
+doesn't matter.
+"""
+for e in coords:
+    if isinstance(e, (float, int, long)):
+        yield coords
+        break
+    else:
+        for f in explode(e):
+            yield f
+</code></pre>
+
+                </section>
+
+                <section>
+                    <h2>GeoJSON is flexible</h2>
+                    <ul>
+                        <li>It's a good fit for Map/Reduce: http://mike.teczno.com/notes/elephants-osm-hadoop.html</li>
+                        <li>It's tileable: https://github.com/NelsonMinar/vector-river-map</li>
+                    </ul>
+
+                </section>
+
+                <section>
+                    <h2>GeoJSON is evolvable</h2>
+                    <p>Best uses will be discovered by others, "out there"</p>
+                    <p>Look into TopoJSON, for example</p>
+                    <p class="fragment">(You may never come back)</p>
+
+                </section>
+
 
                 <!--section>
                     <img src="images/619px-Athena_Herakles_Staatliche_Antikensammlungen_2648.jpg">
                 </section-->
 
                 <section>
-                    <a href="http://www.flickr.com/photos/twiklind/4842356721/"><img title="Lift-off by Tommy's Flickr site, on Flickr" src="images/4842356721_da1e2def7b_o.jpg"></a>
-                
+                    <h2>The Little Format that Could</h2>
+                    <ul>
+                        <li>GeoJSON gets many things right</li>
+                        <li>It gets some things wrong</li>
+                        <li>Requirements, opinions, and tastes differ</li>
+                        <li>GeoJSON is flexible and evolvable</li>
+                        <li>It's been a valuable experiment in standards making</li>
+                    </ul>
+
                     <aside class="notes">
-                        Before I wrote this talk I knew of "Lawnchair" Larry
-                        Walters and his 1982 flight, but I didn't know that
-                        cluster ballooning had practitioners today. It's
-                        a little more seat-of-the-pants than serious
-                        ballooning. A little less formal. Enormous fun by all
-                        reports.
+                        Conclusion!
+                        
+                        Humanely-sized specs matter!
+                    
                     </aside>
 
                 </section>
+
+                <section>
+                    <a href="http://www.flickr.com/photos/twiklind/4842356721/"><img title="Lift-off by Tommy's Flickr site, on Flickr" src="images/4842356721_da1e2def7b_o.jpg"></a>
                 
+                    <aside class="notes">
+                        Whether something looks like success or failure can
+                        depend a lot on your history and your perspective.
+
+                        As I understand it, Cluster ballooning involves all the
+                        basic principles of traditional balloon flight. They're
+                        just applied a little differently. Buffet style rather
+                        than 5 course dinner style.
+                    </aside>
+
+                </section>
+
                 <section>
                     <h2>Credits</h2>
                     <ul>
-                        <li>A kylix by Python (potter) and Douris (painter), 
                         <li>Lift-off by Tommy's Flickr site, on Flickr <a href="http://www.flickr.com/photos/twiklind/4842356721/">http://www.flickr.com/photos/twiklind/4842356721/</a> CC BY-NC-ND</li>
                     </ul>
                 </section>
 
                 <section>
-                    <h2>Stellar Links</h2>
+                    <h2>Thank You</h2>
                     <ul>
-                        <li><a href="http://geojson.org">GeoJSON</a></li>
-                        <li>The GitHub organization</li>
-                        <li>The I-D repo</li>
+                        <li>The Spec: <a href="http://geojson.org">geojson.org</a></li>
+                        <li>GitHub: <a href="https://github.com/GeoJSONWG">github.com/GeoJSONWG</a></li>
+                        <li>The I-D repo: <a href="https://github.com/GeoJSONWG/draft-geojson">github.com/GeoJSONWG/draft-geojson</a></li>
                     </ul>
                 </section>
 
